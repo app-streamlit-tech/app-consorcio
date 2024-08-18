@@ -1,10 +1,10 @@
-from .config import DBNAME, USER, PASSWORD, HOST, PORT
+from .config import DBNAME, USER, PASSWORD, HOST
 import psycopg2
 
 class Db_pg:
     
     def connect():
-        conn = psycopg2.connect(dbname=DBNAME, user=USER, password=PASSWORD, host=HOST, port=PORT)
+        conn = psycopg2.connect(dbname=DBNAME, user=USER, password=PASSWORD, host=HOST)
         cur = conn.cursor()
         return cur, conn
 
