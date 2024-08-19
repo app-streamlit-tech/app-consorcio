@@ -31,7 +31,7 @@ Db_pg.disconnect(cur, conn)
 col1, col2, col3 = st.columns(3)
 
 with col2:
-    authenticator = stauth.Authenticate(credentials, "sales_dashboard", "abcdef", cookie_expiry_days=30)
+    authenticator = stauth.Authenticate(credentials, "sales_dashboard", "abcdef")#, cookie_expiry_days=30)
 
     name, authentication_status, username = authenticator.login("Login", "main")
 
