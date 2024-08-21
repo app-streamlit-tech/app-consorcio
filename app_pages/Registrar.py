@@ -226,10 +226,12 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
 
         st.write(df_sales_view_upd)
 
-        save_sales_bt = st.button('Baixar Tabela')
-        if save_sales_bt:
-            save_table('tabela_vendas', df_sales_view_upd)
-            st.success("Tabela salva com sucesso!")
+        save_table(df_sales_view_upd, "Baixar Tabela")
+
+        # save_sales_bt = st.button('Baixar Tabela')
+        # if save_sales_bt:
+        #     save_table('tabela_vendas', df_sales_view_upd)
+        #     st.success("Tabela salva com sucesso!")
 
 
     if selected == 'Projeto':
@@ -298,10 +300,11 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
         
         st.write(df_projects_view_upd)
 
-        save_sales_bt = st.button('Baixar Tabela')
-        if save_sales_bt:
-            save_table('tabela_projetos', df_projects_view_upd)
-            st.success("Tabela salva com sucesso!")
+        save_table(df_projects_view_upd, "Baixar Tabela")
+        # save_sales_bt = st.button('Baixar Tabela')
+        # if save_sales_bt:
+        #     save_table('tabela_projetos', df_projects_view_upd)
+        #     st.success("Tabela salva com sucesso!")
 
     if selected == 'Vendedor':
         employee_menu = option_menu(None, ['Registrar', 'Atualizar', 'Deletar'], orientation='horizontal')
@@ -453,10 +456,11 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
 
         st.write(df_employees_view_upd)
 
-        save_employees_bt = st.button('Baixar Tabela')
-        if save_employees_bt:
-            save_table('tabela_funcionarios', df_employees_view_upd)
-            st.success("Tabela salva com sucesso!")
+        save_table(df_employees_view_upd, "Baixar Tabela")
+        # save_employees_bt = st.button('Baixar Tabela')
+        # if save_employees_bt:
+        #     save_table('tabela_funcionarios', df_employees_view_upd)
+        #     st.success("Tabela salva com sucesso!")
 
     if selected == 'Produto':
         product_menu = option_menu(None, ['Administradora','Produto','Receita','Comissão'], orientation='horizontal')
@@ -520,10 +524,11 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
 
             st.write(df_adm_view_upd)
 
-            save_adm_bt = st.button('Baixar Tabela')
-            if save_adm_bt:
-                save_table('tabela_adm', df_adm_view_upd)
-                st.success("Tabela salva com sucesso!")
+            save_table(df_adm_view_upd, "Baixar Tabela")
+            # save_adm_bt = st.button('Baixar Tabela')
+            # if save_adm_bt:
+            #     save_table('tabela_adm', df_adm_view_upd)
+            #     st.success("Tabela salva com sucesso!")
 
 
         if product_menu == 'Produto':
@@ -597,10 +602,11 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
 
             st.write(df_products_view_upd)
 
-            save_prod_bt = st.button('Baixar Tabela')
-            if save_prod_bt:
-                save_table('tabela_prod', df_products_view_upd)
-                st.success("Tabela salva com sucesso!")
+            save_table(df_products_view_upd, "Baixar Tabela")
+            # save_prod_bt = st.button('Baixar Tabela')
+            # if save_prod_bt:
+            #     save_table('tabela_prod', df_products_view_upd)
+            #     st.success("Tabela salva com sucesso!")
 
         if product_menu == 'Receita':
             inc_menu = option_menu(None, ['Registrar','Deletar'], orientation='horizontal')
@@ -698,10 +704,11 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
 
             st.write(df_income_view_upd)
 
-            save_inc_bt = st.button('Baixar Tabela')
-            if save_inc_bt:
-                save_table('tabela_inc', df_income_view_upd)
-                st.success("Tabela salva com sucesso!")
+            save_table(df_income_view_upd, "Baixar Tabela")
+            # save_inc_bt = st.button('Baixar Tabela')
+            # if save_inc_bt:
+            #     save_table('tabela_inc', df_income_view_upd)
+            #     st.success("Tabela salva com sucesso!")
 
         if product_menu == 'Comissão':
 
@@ -800,10 +807,11 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
 
             st.write(df_prod_caract_view_upd)
 
-            save_comis_bt = st.button('Baixar Tabela')
-            if save_comis_bt:
-                save_table('tabela_comis', df_prod_caract)
-                st.success("Tabela salva com sucesso!")
+            save_table(df_prod_caract_view_upd, "Baixar Tabela")
+            # save_comis_bt = st.button('Baixar Tabela')
+            # if save_comis_bt:
+            #     save_table('tabela_comis', df_prod_caract)
+            #     st.success("Tabela salva com sucesso!")
         
         # if product_menu == 'Atualizar':
         #     st.subheader("Atualizar Produto")

@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 import os
+import io
 from dateutil.relativedelta import relativedelta
 from datetime import datetime as dt
 from core.db import Db_pg
@@ -38,16 +39,34 @@ def get_columns(table: str, cur) -> list:
 
     return table_columns
 
-def save_table(table_name: str, df):
+def save_table(df, label, area=None, emp_selected=None, list_func_col=None):
     '''Save table in Downloads file'''
 
-    file_path = os.path.expanduser("~") + "\\Downloads"
-    file_path = file_path.replace('"','')
+    # buffer to use for excel writer
+    buffer = io.BytesIO()
+    # writer = pd.ExcelWriter(buffer, engine='xlsxwriter')
 
-    if (file_path[-1] == '/') or (file_path[-1] == '\\'):
-        file_path = file_path[:-1]
+    with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
 
-    df.to_excel(fr"{file_path}/{table_name}_{dt.now().date()}.xlsx", index=False)
+        if area == 'RH':
+            if emp_selected != 'Todos':
+                df.to_excel(writer, index=False, sheet_name=emp_selected)
+            else:
+                for func in list_func_col:
+                    if func != 'Todos':
+                        df_holerite_temp = df[df['Vendedor'] == func]
+                        df_holerite_temp.to_excel(writer, index=False, sheet_name=func)
+        else:
+            df.to_excel(writer, index=False)
+
+        writer.close()
+
+        st.download_button(
+            label=label,
+            data=buffer,
+            file_name='large_df.xlsx',
+            mime='application/vnd.ms-excel'
+        )
 
 def comissoes(df_sales, df_select, cur_month_date, id_name): # cur_month_datetime=dt.now()
     

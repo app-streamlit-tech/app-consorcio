@@ -143,15 +143,16 @@ def rh(df_sales, df_prod_caract):
         # print(type(df_holerite['Crédito (R$)'][0]),type(df_holerite['Comissão Total (%)'][0]),type(df_holerite['Comissão Atual (%)'][0]))
         st.write(df_holerite_view)
 
-        save_holerite_bt = st.button('Baixar Folha de Pagamento')
-        if save_holerite_bt:
-            if emp_selected != 'Todos':
-                save_table(f'Holerite {emp_selected}', df_holerite)
-            else:
-                for func in list_func_col:
-                    df_holerite_temp = df_holerite[df_holerite['Vendedor'] == func]
-                    save_table(f'Holerite {func}', df_holerite_temp)
-            st.success("Tabela salva com sucesso!")
+        save_table(df_holerite_view, "Baixar Folha de Pagamento", "RH", emp_selected, list_func_col)
+        # save_holerite_bt = st.button('Baixar Folha de Pagamento')
+        # if save_holerite_bt:
+        #     if emp_selected != 'Todos':
+        #         save_table(f'Holerite {emp_selected}', df_holerite)
+        #     else:
+        #         for func in list_func_col:
+        #             df_holerite_temp = df_holerite[df_holerite['Vendedor'] == func]
+        #             save_table(f'Holerite {func}', df_holerite_temp)
+        #     st.success("Tabela salva com sucesso!")
 
 
     with st.container():

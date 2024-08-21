@@ -139,10 +139,11 @@ def receita(df_sales, df_income):
 
         st.write(df_holerite_view)
 
-        save_holerite_bt = st.button('Baixar Receita')
-        if save_holerite_bt:
-            save_table(f'Receita', df_holerite)
-            st.success("Tabela salva com sucesso!")
+        save_table(df_holerite_view, "Baixar Receita")
+        # save_holerite_bt = st.button('Baixar Receita')
+        # if save_holerite_bt:
+        #     save_table(f'Receita', df_holerite)
+        #     st.success("Tabela salva com sucesso!")
 
     with st.container():
         st.subheader('Tabela geral de receitas')
