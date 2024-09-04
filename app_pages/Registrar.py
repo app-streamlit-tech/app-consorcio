@@ -53,13 +53,14 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
                 #     id_sales = int(id_sales_atual) + 1
                 # else:
                 #     id_sales = 1
-                short_id = shortuuid.ShortUUID()
-                id_sales = short_id.random(length=8)
+                # short_id = shortuuid.ShortUUID()
+                # id_sales = short_id.random(length=8)
 
                 nome_produto = st.selectbox('Produto', produtos)
                 id_func_s = st.selectbox('Vendedor', funcionarios)
                 projeto_venda = st.selectbox('Projeto', projetos)
                 nome_cliente = st.text_input('Nome do Cliente')
+                id_sales = st.text_input('Contrato')
                 grupo = st.number_input('Grupo', step=1)
                 cota = st.number_input('Cota', step=1)
                 valor_venda = st.number_input('Valor do Consórcio')
