@@ -3,6 +3,7 @@ from streamlit_option_menu import option_menu
 import pandas as pd
 from datetime import time, datetime as dt
 from dateutil.relativedelta import relativedelta
+import shortuuid
 from core.db import Db_pg
 from .functions import comissoes, save_table, convert_column_types
 
@@ -47,11 +48,13 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
 
             with st.form(key="reg_sales", clear_on_submit=True):
                 
-                id_sales_atual = df_sales['id_venda'].max()
-                if pd.isna(id_sales_atual) == False:
-                    id_sales = int(id_sales_atual) + 1
-                else:
-                    id_sales = 1
+                # id_sales_atual = df_sales['id_venda'].max()
+                # if pd.isna(id_sales_atual) == False:
+                #     id_sales = int(id_sales_atual) + 1
+                # else:
+                #     id_sales = 1
+                short_id = shortuuid.ShortUUID()
+                id_sales = short_id.random(length=8)
 
                 nome_produto = st.selectbox('Produto', produtos)
                 id_func_s = st.selectbox('Vendedor', funcionarios)
@@ -240,11 +243,13 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
             st.subheader("Registrar Projeto")
             with st.form(key="reg_project", clear_on_submit=True):
                 
-                id_proj_atual = df_projects['id_projeto'].max()
-                if pd.isna(id_proj_atual) == False:
-                    id_proj = int(id_proj_atual) + 1
-                else:
-                    id_proj = 1
+                # id_proj_atual = df_projects['id_projeto'].max()
+                # if pd.isna(id_proj_atual) == False:
+                #     id_proj = int(id_proj_atual) + 1
+                # else:
+                #     id_proj = 1
+                short_id = shortuuid.ShortUUID()
+                id_proj = short_id.random(length=3)
 
                 nome_projeto = st.text_input('Nome do Projeto')
                 
@@ -312,11 +317,13 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
             st.subheader("Registrar Vendedor")
             with st.form(key="reg_employee", clear_on_submit=True):
 
-                id_func_atual = df_employees['id_funcionario'].max()
-                if pd.isna(id_func_atual) == False:
-                    id_func = int(id_func_atual) + 1
-                else:
-                    id_func = 1
+                # id_func_atual = df_employees['id_funcionario'].max()
+                # if pd.isna(id_func_atual) == False:
+                #     id_func = int(id_func_atual) + 1
+                # else:
+                #     id_func = 1
+                short_id = shortuuid.ShortUUID()
+                id_func = short_id.random(length=3)
                 
                 st.text("Dados Gerais")
                 nome_func = st.text_input("Nome Vendedor", key='nome_func')
@@ -471,11 +478,13 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
                 st.subheader("Registrar Administradora")
                 with st.form(key="reg_adm", clear_on_submit=True):
 
-                    id_adm_atual = df_adm['id_adm'].max()
-                    if pd.isna(id_adm_atual) == False:
-                        id_adm = int(id_adm_atual) + 1
-                    else:
-                        id_adm = 1
+                    # id_adm_atual = df_adm['id_adm'].max()
+                    # if pd.isna(id_adm_atual) == False:
+                    #     id_adm = int(id_adm_atual) + 1
+                    # else:
+                    #     id_adm = 1
+                    short_id = shortuuid.ShortUUID()
+                    id_adm = short_id.random(length=3)
 
                     nome_adm = st.text_input("Nome da Administradora")
 
@@ -538,11 +547,13 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
                 st.subheader("Registrar Produto")
                 with st.form(key="reg_product", clear_on_submit=True):
                     
-                    id_produto_atual = df_products['id_produto'].max()
-                    if pd.isna(id_produto_atual) == False:
-                        id_produto = int(id_produto_atual) + 1
-                    else:
-                        id_produto = 1
+                    # id_produto_atual = df_products['id_produto'].max()
+                    # if pd.isna(id_produto_atual) == False:
+                    #     id_produto = int(id_produto_atual) + 1
+                    # else:
+                    #     id_produto = 1
+                    short_id = shortuuid.ShortUUID()
+                    id_produto = short_id.random(length=4)
 
                     list_adm = list(df_adm['nome_adm'])
 
@@ -622,11 +633,13 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
 
                 with st.form(key="reg_product_caract", clear_on_submit=True):
 
-                    id_income_atual = df_income['id_income'].max()
-                    if pd.isna(id_income_atual) == False:
-                        id_income = int(id_income_atual) + 1
-                    else:
-                        id_income = 1
+                    # id_income_atual = df_income['id_income'].max()
+                    # if pd.isna(id_income_atual) == False:
+                    #     id_income = int(id_income_atual) + 1
+                    # else:
+                    #     id_income = 1
+                    short_id = shortuuid.ShortUUID()
+                    id_income = short_id.random(length=4)
 
                     # produtos = list(df_products['id_produto'].map(str) + ' - ' +  df_products['nome_adm'].map(str) + ' - ' + df_products['nome_produto'].map(str))
                     produtos = list(df_products[df_products['nome_adm'] == nome_adm]['nome_produto'])
@@ -725,11 +738,13 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
 
                 with st.form(key="reg_product_caract", clear_on_submit=True):
 
-                    id_produto_caract_atual = df_prod_caract['id_prod_caract'].max()
-                    if pd.isna(id_produto_caract_atual) == False:
-                        id_prod_caract = int(id_produto_caract_atual) + 1
-                    else:
-                        id_prod_caract = 1
+                    # id_produto_caract_atual = df_prod_caract['id_prod_caract'].max()
+                    # if pd.isna(id_produto_caract_atual) == False:
+                    #     id_prod_caract = int(id_produto_caract_atual) + 1
+                    # else:
+                    #     id_prod_caract = 1
+                    short_id = shortuuid.ShortUUID()
+                    id_prod_caract = short_id.random(length=4)
 
                     # produtos = list(df_products['id_produto'].map(str) + ' - ' +  df_products['nome_adm'].map(str) + ' - ' + df_products['nome_produto'].map(str))
                     produtos = list(df_products[df_products['nome_adm'] == nome_adm]['nome_produto'])

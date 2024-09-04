@@ -4,6 +4,7 @@ streamlit==1.37.1
 streamlit-authenticator==0.2.2
 streamlit-option-menu==0.3.13
 XlsxWriter==3.2.0
+shortuuid==1.0.13
 matplotlib
 psycopg2
 openpyxl
