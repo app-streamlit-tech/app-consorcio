@@ -221,7 +221,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
 
         st.subheader("Tabela Vendas")
 
-        df_sales_view = convert_column_types(df_sales, ['valor_venda','taxa_comissao','valor_comissao','taxa_receita','valor_receita'], ['data_venda','data_primeira_parcela','data_ultima_parcela'])
+        df_sales_view = convert_column_types(df_sales.sort_values(by='data_venda',ascending=False), ['valor_venda','taxa_comissao','valor_comissao','taxa_receita','valor_receita'], ['data_venda','data_primeira_parcela','data_ultima_parcela'])
         dict_rename_sales = {'id_venda':'ID Venda','nome_adm':'Adm','nome_produto':'Produto','nome_funcionario':'Vendedor','grupo':'Grupo','cota':'Cota','projeto':'Projeto','nome_cliente':'Cliente','data_venda':'Data Venda',
                         'valor_venda':'Valor Venda (R$)','taxa_comissao':'Taxa Comissão (%)','valor_comissao':'Valor Comissão','taxa_receita':'Taxa Receita','valor_receita':'Valor Receita'}
         df_sales_view_upd = df_sales_view[dict_rename_sales.keys()]
