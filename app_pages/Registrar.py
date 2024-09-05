@@ -101,7 +101,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
                     df_sales = pd.concat([df_temp_sales, df_sales], ignore_index=True)
 
                     query = f"INSERT INTO sales (id_venda, id_prod_caract, id_income, nome_adm, nome_produto, id_funcionario, nome_funcionario, grupo, cota, projeto, nome_cliente, data_venda, data_venda_abv, data_primeira_parcela, data_ultima_parcela, data_ultima_parcela_receita, \
-                    valor_venda, taxa_comissao, valor_comissao, taxa_receita, valor_receita, company_id) VALUES ({id_sales}, {id_prod_caract}, {id_income}, '{nome_adm}', '{nome_produto}', {id_funcionario}, '{nome_funcionario}', {grupo}, {cota}, '{projeto_venda}', '{nome_cliente}', \
+                    valor_venda, taxa_comissao, valor_comissao, taxa_receita, valor_receita, company_id) VALUES ('{id_sales}', {id_prod_caract}, {id_income}, '{nome_adm}', '{nome_produto}', {id_funcionario}, '{nome_funcionario}', {grupo}, {cota}, '{projeto_venda}', '{nome_cliente}', \
                         '{data}', '{data_venda_abv}', '{data_primeira_parcela_upd}', '{data_ultima_parcela_upd}', '{data_ultima_parcela_income_upd}', {valor_venda}, {taxa_comissao}, {valor_comissao}, {taxa_receita}, {valor_receita}, '{company_id}');"
                     cur.execute(query)
                     conn.commit()
