@@ -209,7 +209,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
                 if del_sales:
 
                     sales = id_sales_s.split(' - ')
-                    id_venda = int(sales[0])
+                    id_venda = sales[0]
                     nome_produto = sales[1]
 
                     df_sales = df_sales[df_sales['id_venda'] != id_venda]
