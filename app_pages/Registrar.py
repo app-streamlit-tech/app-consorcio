@@ -214,7 +214,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
 
                     df_sales = df_sales[df_sales['id_venda'] != id_venda]
                     
-                    query = f"DELETE FROM sales WHERE id_venda = {id_venda};"
+                    query = f"DELETE FROM sales WHERE id_venda = '{id_venda}';"
                     cur.execute(query)
                     conn.commit()
 
