@@ -182,10 +182,10 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
                     df_sales.loc[df_sales['id_venda'] == id_sales_upd, 'taxa_receita'] = taxa_receita
                     df_sales.loc[df_sales['id_venda'] == id_sales_upd, 'valor_receita'] = valor_receita
 
-                    query = f"UPDATE sales SET id_prod_caract = {id_prod_caract}, nome_adm = '{nome_adm}', nome_produto = '{nome_produto}', id_funcionario = {id_funcionario}, nome_funcionario = '{nome_funcionario}', \
+                    query = f"UPDATE sales SET id_prod_caract = '{id_prod_caract}', nome_adm = '{nome_adm}', nome_produto = '{nome_produto}', id_funcionario = '{id_funcionario}', nome_funcionario = '{nome_funcionario}', \
                         projeto = '{projeto_venda}', nome_cliente = '{nome_cliente}', grupo = {grupo}, cota = {cota}, valor_venda = {valor_venda}, data_venda = '{data}', data_venda_abv = '{data_venda_abv}', \
                          data_primeira_parcela = '{data_primeira_parcela_upd}', data_ultima_parcela = '{data_ultima_parcela_upd}', taxa_comissao = {taxa_comissao}, valor_comissao = {valor_comissao}, \
-                             taxa_receita = {taxa_receita}, valor_receita = {valor_receita} WHERE id_venda = {id_sales_upd};"
+                             taxa_receita = {taxa_receita}, valor_receita = {valor_receita} WHERE id_venda = '{id_sales_upd}';"
                     cur.execute(query)
                     conn.commit()
 
@@ -263,7 +263,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
                     df_temp_proj = pd.DataFrame([{"id_projeto": id_proj, "nome_projeto": nome_projeto}])
                     df_projects = pd.concat([df_temp_proj, df_projects], ignore_index=True)
                     
-                    query = f"INSERT INTO projects (id_projeto, nome_projeto, company_id) VALUES ({id_proj}, '{nome_projeto}', '{company_id}');"
+                    query = f"INSERT INTO projects (id_projeto, nome_projeto, company_id) VALUES ('{id_proj}', '{nome_projeto}', '{company_id}');"
                     cur.execute(query)
                     conn.commit()
 
@@ -292,7 +292,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
 
                     df_projects = df_projects[df_projects['id_projeto'] != id_project]
                     
-                    query = f"DELETE FROM projects WHERE id_projeto = {id_project};"
+                    query = f"DELETE FROM projects WHERE id_projeto = '{id_project}';"
                     cur.execute(query)
                     conn.commit()
 
@@ -358,7 +358,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
                     df_employees = pd.concat([df_employees, df_temp_func], ignore_index=True)
                     
                     query = f"INSERT INTO employees (id_funcionario, nome_funcionario, cpf, data_adesao, salario, pix, emp_validation, company_id, nome_banco, nr_banco, agencia, conta, titular, documento) VALUES \
-                    ({id_func}, '{nome_func}', '{cpf}', '{data_adesao}', {salario}, '{pix}', true, '{company_id}', '{nome_banco}', '{nr_banco}', '{agencia}', '{nr_conta}', '{titular}', '{documento}');"
+                    ('{id_func}', '{nome_func}', '{cpf}', '{data_adesao}', {salario}, '{pix}', true, '{company_id}', '{nome_banco}', '{nr_banco}', '{agencia}', '{nr_conta}', '{titular}', '{documento}');"
                     cur.execute(query)
                     conn.commit()
 
@@ -416,7 +416,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
                     df_employees.loc[df_employees['id_funcionario'] == id_funcionario, 'documento'] = documento
 
                     query = f"UPDATE employees SET nome_funcionario = '{nome_func}', cpf = '{cpf}', data_adesao = '{data_adesao}', salario = {salario}, pix = '{pix}', nome_banco = '{nome_banco}', nr_banco = '{nr_banco}', \
-                        agencia = '{agencia}', conta = '{nr_conta}', titular = '{titular}', documento = '{documento}' WHERE id_funcionario = {id_funcionario};"
+                        agencia = '{agencia}', conta = '{nr_conta}', titular = '{titular}', documento = '{documento}' WHERE id_funcionario = '{id_funcionario}';"
                     
                     cur.execute(query)
                     conn.commit()
@@ -447,7 +447,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
 
                     df_employees.loc[df_employees['id_funcionario'] == id_funcionario, 'emp_validation'] = False
                     
-                    query = f"DELETE FROM employees WHERE id_funcionario = {id_funcionario};"
+                    query = f"DELETE FROM employees WHERE id_funcionario = '{id_funcionario}';"
                     cur.execute(query)
                     conn.commit()
 
@@ -493,7 +493,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
                     if submit_adm:
                         df_adm = pd.concat([df_adm, pd.DataFrame([{"id_adm": id_adm, "nome_adm": nome_adm}])], ignore_index=True)
                         
-                        query = f"INSERT INTO administrators (id_adm, nome_adm, company_id) VALUES ({id_adm}, '{nome_adm}', '{company_id}');"
+                        query = f"INSERT INTO administrators (id_adm, nome_adm, company_id) VALUES ('{id_adm}', '{nome_adm}', '{company_id}');"
                         cur.execute(query)
                         conn.commit()
 
@@ -520,7 +520,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
 
                         df_adm = df_adm[df_adm['id_adm'] != id_adm].reset_index(drop=True)
                         
-                        query = f"DELETE FROM administrators WHERE id_adm = {id_adm};"
+                        query = f"DELETE FROM administrators WHERE id_adm = '{id_adm}';"
                         cur.execute(query)
                         conn.commit()
 
@@ -566,7 +566,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
                     if submit_prod:
                         df_products = pd.concat([df_products, pd.DataFrame([{"id_produto": id_produto, "nome_adm": administradora, "nome_produto": nome_produto}])], ignore_index=True)
                         
-                        query = f"INSERT INTO products (id_produto, nome_adm, nome_produto, company_id) VALUES ({id_produto}, '{administradora}', '{nome_produto}', '{company_id}');"
+                        query = f"INSERT INTO products (id_produto, nome_adm, nome_produto, company_id) VALUES ('{id_produto}', '{administradora}', '{nome_produto}', '{company_id}');"
                         cur.execute(query)
                         conn.commit()
 
@@ -600,7 +600,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
 
                         df_products = df_products[df_products['id_produto'] != id_prod].reset_index(drop=True)
                         
-                        query = f"DELETE FROM products WHERE id_produto = {id_prod};"
+                        query = f"DELETE FROM products WHERE id_produto = '{id_prod}';"
                         cur.execute(query)
                         conn.commit()
 
@@ -670,7 +670,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
                         df_income = pd.concat([df_income, pd.DataFrame([{"id_income": id_income, "nome_adm": nome_adm, "nome_produto": produto, 'taxa_comissao': taxa_comissao_produto, 'contemplacao': contemplacao, 
                                                                             'qtd_parcelas': qtd_parcelas, 'taxa_parcelas': list_parcelas_upd}])], ignore_index=True)
 
-                        query = f"INSERT INTO income (id_income, nome_adm, nome_produto, taxa_comissao, contemplacao, qtd_parcelas, taxa_parcelas, company_id) VALUES ({id_income}, '{nome_adm}', '{produto}', \
+                        query = f"INSERT INTO income (id_income, nome_adm, nome_produto, taxa_comissao, contemplacao, qtd_parcelas, taxa_parcelas, company_id) VALUES ('{id_income}', '{nome_adm}', '{produto}', \
                             {taxa_comissao_produto}, {contemplacao}, {qtd_parcelas}, '{list_parcelas_upd}', '{company_id}');"
                         cur.execute(query)
                         conn.commit()
@@ -702,7 +702,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
 
                         df_income = df_income[df_income['id_income'] != id_inc].reset_index(drop=True)
                         
-                        query = f"DELETE FROM income WHERE id_income = {id_inc};"
+                        query = f"DELETE FROM income WHERE id_income = '{id_inc}';"
                         cur.execute(query)
                         conn.commit()
 
@@ -775,7 +775,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
                         df_prod_caract = pd.concat([df_prod_caract, pd.DataFrame([{"id_prod_caract": id_prod_caract, "nome_adm": nome_adm, "nome_produto": produto, 'projeto': projeto_produto, 'taxa_comissao': taxa_comissao_produto, 
                                                                             'qtd_parcelas': qtd_parcelas, 'taxa_parcelas': list_parcelas_upd}])], ignore_index=True)
 
-                        query = f"INSERT INTO prod_caract (id_prod_caract, nome_adm, nome_produto, projeto, taxa_comissao, qtd_parcelas, taxa_parcelas, company_id) VALUES ({id_prod_caract}, '{nome_adm}', '{produto}', '{projeto_produto}', \
+                        query = f"INSERT INTO prod_caract (id_prod_caract, nome_adm, nome_produto, projeto, taxa_comissao, qtd_parcelas, taxa_parcelas, company_id) VALUES ('{id_prod_caract}', '{nome_adm}', '{produto}', '{projeto_produto}', \
                             {taxa_comissao_produto}, {qtd_parcelas}, '{list_parcelas_upd}', '{company_id}');"
                         cur.execute(query)
                         conn.commit()
@@ -807,7 +807,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
 
                         df_prod_caract = df_prod_caract[df_prod_caract['id_prod_caract'] != id_comis].reset_index(drop=True)
                         
-                        query = f"DELETE FROM prod_caract WHERE id_prod_caract = {id_comis};"
+                        query = f"DELETE FROM prod_caract WHERE id_prod_caract = '{id_comis}';"
                         cur.execute(query)
                         conn.commit()
 
@@ -913,7 +913,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
 
                     df_products = df_products[df_products['id_produto'] != id_produto]
                     
-                    query = f"DELETE FROM products WHERE id_produto = {id_produto};"
+                    query = f"DELETE FROM products WHERE id_produto = '{id_produto}';"
                     cur.execute(query)
                     conn.commit()
 
