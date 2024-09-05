@@ -287,7 +287,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
                 if del_projects:
 
                     projects = id_projects_s.split(' - ')
-                    id_project = int(projects[0])
+                    id_project = projects[0]
                     name_project = projects[1]
 
                     df_projects = df_projects[df_projects['id_projeto'] != id_project]
@@ -442,7 +442,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
                 if del_emp:
 
                     func = id_func_s.split(' - ')
-                    id_funcionario = int(func[0])
+                    id_funcionario = func[0]
                     nome_funcionario = func[1]
 
                     df_employees.loc[df_employees['id_funcionario'] == id_funcionario, 'emp_validation'] = False
@@ -515,7 +515,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
                     if del_adm:
 
                         adm = id_adm_s.split(' - ')
-                        id_adm = int(adm[0])
+                        id_adm = adm[0]
                         nome_adm = adm[1]
 
                         df_adm = df_adm[df_adm['id_adm'] != id_adm].reset_index(drop=True)
@@ -595,7 +595,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
                     if del_prod:
 
                         prod = id_prod_s.split(' - ')
-                        id_prod = int(prod[0])
+                        id_prod = prod[0]
                         nome_prod = prod[1]
 
                         df_products = df_products[df_products['id_produto'] != id_prod].reset_index(drop=True)
@@ -697,7 +697,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
                     if del_inc:
 
                         inc = id_inc_s.split(' - ')
-                        id_inc = int(inc[0])
+                        id_inc = inc[0]
                         nome_inc = inc[1]
 
                         df_income = df_income[df_income['id_income'] != id_inc].reset_index(drop=True)
@@ -802,7 +802,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
                     if del_comis:
 
                         comis = id_comis_s.split(' - ')
-                        id_comis = int(comis[0])
+                        id_comis = comis[0]
                         nome_comis = comis[1]
 
                         df_prod_caract = df_prod_caract[df_prod_caract['id_prod_caract'] != id_comis].reset_index(drop=True)
@@ -908,7 +908,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
                 if del_prod:
 
                     prod = id_prod_s.split(' - ')
-                    id_produto = int(prod[0])
+                    id_produto = prod[0]
                     nome_produto = prod[1]
 
                     df_products = df_products[df_products['id_produto'] != id_produto]
