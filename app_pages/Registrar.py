@@ -96,7 +96,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
                     valor_receita = round((taxa_receita/100) * valor_venda, 2)
 
                     df_temp_sales = pd.DataFrame([{"id_venda": id_sales, "id_prod_caract": id_prod_caract, "id_income": id_income, "nome_adm": nome_adm, "nome_produto": nome_produto, "id_funcionario": id_funcionario, "nome_funcionario": nome_funcionario, 
-                                                'grupo': grupo, 'cota': cota, 'projeto': projeto_venda, 'nome_cliente': nome_cliente, "data_venda": data, "data_venda_abv": data_venda_abv, 'data_primeira_parcela': data_primeira_parcela_upd, 
+                                                'grupo': grupo, 'cota': cota, 'projeto': projeto_venda, 'nome_cliente': nome_cliente, "data_venda": pd.to_datetime(data), "data_venda_abv": data_venda_abv, 'data_primeira_parcela': data_primeira_parcela_upd, 
                                                 'data_ultima_parcela': data_ultima_parcela_upd, "valor_venda": valor_venda, "taxa_comissao": taxa_comissao, "valor_comissao": valor_comissao, "taxa_receita": taxa_receita, "valor_receita": valor_receita}])
                     df_sales = pd.concat([df_temp_sales, df_sales], ignore_index=True)
 
