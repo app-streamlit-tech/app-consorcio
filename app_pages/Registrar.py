@@ -85,7 +85,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
                     data_ultima_parcela = data + relativedelta(months=(qtd_parcelas))
                     data_ultima_parcela_upd = dt(data_ultima_parcela.year, data_ultima_parcela.month, 10).date()
 
-                    taxa_comissao = float(df_prod_caract.loc[df_prod_caract['id_prod_caract'] == int(id_prod_caract), 'taxa_comissao'].values[0])
+                    taxa_comissao = float(df_prod_caract.loc[df_prod_caract['id_prod_caract'] == id_prod_caract, 'taxa_comissao'].values[0])
                     valor_comissao = round((taxa_comissao/100) * valor_venda, 2)
 
                     id_income = df_income.loc[(df_income['nome_produto'] == nome_produto), 'id_income'].values[0]
@@ -152,7 +152,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
                     id_prod_caract = df_prod_caract.loc[(df_prod_caract['nome_produto'] == nome_produto) & (df_prod_caract['projeto'] == projeto_venda), 'id_prod_caract'].values[0]
                     qtd_parcelas = df_prod_caract.loc[(df_prod_caract['id_prod_caract'] == id_prod_caract), 'qtd_parcelas'].values[0]
 
-                    taxa_comissao = float(df_prod_caract.loc[df_prod_caract['id_prod_caract'] == int(id_prod_caract), 'taxa_comissao'].values[0])
+                    taxa_comissao = float(df_prod_caract.loc[df_prod_caract['id_prod_caract'] == id_prod_caract, 'taxa_comissao'].values[0])
                     valor_comissao = round((taxa_comissao/100) * valor_venda, 2)
 
                     taxa_receita = float(df_income.loc[df_income['nome_produto'] == nome_produto, 'taxa_comissao'].values[0])
