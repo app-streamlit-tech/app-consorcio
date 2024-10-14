@@ -146,6 +146,7 @@ def registrar(cur, conn, company_id, df_employees, df_products, df_prod_caract, 
                     func = id_func_s.split(' - ')
                     id_funcionario = func[0]
                     nome_funcionario = func[1]
+                    data = pd.to_datetime(data, format='%Y-%m-%d')
 
                     data_venda_abv = f'{data.year}/0{data.month}' if len(str(data.month)) == 1 else f'{data.year}/{data.month}'
 
